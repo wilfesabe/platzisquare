@@ -1,0 +1,44 @@
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Lugares Cercanos</h2>
+      <ul class="list-group">
+        <ng-container *ngFor="let lugar of lugares">
+          <a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action: 'ver', refer: 'google', distancia: lugar.distancia}"><li class="list-group-item"  *ngIf="lugar.active">
+            {{lugar.nombre}}
+        </li></a>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h2>Destacados</h2>
+    </div>
+  </div>
+</div>
+<!--hr/>
+<ul class="list-group">
+  <ng-container *ngFor="let lugar of lugares" [ngSwitch]="lugar.cercania">
+    <li class="list-group-item" contar-clicks [ngStyle]="{color: (lugar.active)? 'black': 'gray'}" [resaltar]="lugar.plan">
+      {{lugar.nombre}}
+      <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy cercano</span>
+      <span *ngSwitchCase="2" [ngStyle]="{color: 'black'}">Cercano</span>
+      <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
+    </li>
+  </ng-container>
+</ul>
+<hr/>
+<!--ul class="list-group">
+  <ng-container *ngFor="let persona of personas; let i = index" [ngSwitch]="persona.cercania" >
+    <li  [ngStyle]="{color: (persona.edad > 18) ? 'black':'gray'}"
+      [ngClass]="{numero_par: (i % 2) == 0 }">
+      {{persona.nombre}} -
+      <span *ngSwitchCase="1" [ngStyle]="{color:'green'}">Muy cercano</span>
+      <span *ngSwitchCase="2" [ngStyle]="{color:'black'}">Cercano</span>
+      <span *ngSwitchCase="3" [ngStyle]="{color:'red'}">Lejano</span>
+    </li>
+  </ng-container>
+</ul>
+<hr/-->
